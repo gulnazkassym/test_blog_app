@@ -1,0 +1,28 @@
+<table>
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <th><%= post.title %></th>
+      </tr>
+      <tr>
+        <td><%= post.subtitle %></td>
+        <td><%= link_to 'Открыть', post %></td>
+        <% if logged_in? %>
+          <% if current_user.posts.include?(post) %>
+            <td><%= link_to 'Редактировать', edit_post_path(post) %></td>
+            <td><%= link_to 'Удалить', post, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+          <% else %>
+            <% unless current_user.favorite_posts.exists?(id: post.id) %>
+              <td><%= link_to 'Добавить в избранные', favorite_posts_path(post_id: post), method: :post %></td>
+            <% else %>
+              <td><%= link_to 'Удалить из избранных', favorite_posts_path(post), method: :delete %></td>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tr>
+      <tr>
+        <td><small><%= link_to post.user.fullname, controller: 'users', action: 'posts', id: post.user.id %></small></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to '< Назад', posts_path %>
+
+<h2>Избранные новости</h2>
+
+<table>
+  <tbody>
+    <% @favorites.each do |post| %>
+      <tr>
+        <th><%= post.title %></th>
+      </tr>
+      <tr>
+        <td><%= post.subtitle %></td>
+        <td><%= link_to 'Открыть', post %></td>
+        <td><%= link_to 'Удалить из избранных', favorite_posts_path(post), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

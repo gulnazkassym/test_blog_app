@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<% if logged_in? %>
+  Вы авторизованы как <%= current_user.username %>
+  <%= link_to "Выйти", logout_path, {method: :delete} %>
+  <p><%= link_to "Мои новости", controller: 'users', action: 'posts', id: current_user.id %></p>
+  <p><%= link_to "Избранные", favorites_path if current_user.favorites.any? %></p>
+  <p><%= link_to "Непрочитанные новости", unreaded_path %></p>
+  <br>
+  <p><%= link_to 'Создать новость', new_post_path %></p>
+  <p><%= link_to 'Все пользователи', users_path %></p>
+<% else %>
+  <%= link_to "Войти", login_path %>
+<% end %>
+
+<br>
+
+<h1>Новости</h1>
+<%= render 'list', posts: @posts %>

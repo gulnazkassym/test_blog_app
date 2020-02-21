@@ -1,0 +1,11 @@
+<%= link_to '< Назад', root_path %>
+<h2>Все пользователи</h2>
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.fullname, controller: 'users', action: 'posts', id: user.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

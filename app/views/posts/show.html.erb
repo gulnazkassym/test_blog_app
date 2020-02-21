@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to '< Назад', posts_path %>
+<br>
+
+<p>
+  <strong><%= @post.title %></strong>
+  <% if logged_in? %>
+    <%= link_to 'Редактировать', edit_post_path(@post) %>
+  <% end %>
+</p>
+
+<p>
+  <em><%= @post.subtitle %></em>
+</p>
+
+<p>
+  <%= @post.text %>
+</p>

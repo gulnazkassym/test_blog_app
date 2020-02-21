@@ -1,0 +1,5 @@
+<%= link_to '< Назад', posts_path %>
+
+<h2>Новости пользователя <%= @user.fullname %></h2>
+
+<%= render 'posts/list', posts: @user_posts %>
