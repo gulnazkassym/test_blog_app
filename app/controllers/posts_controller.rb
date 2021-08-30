@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def index
     @posts = Post.where(is_published: true)
@@ -54,7 +56,6 @@ class PostsController < ApplicationController
   def unreaded_posts
     @unreaded_posts = Post.where.not("cast(#{current_user.id} as text) = ANY (read_by)")
   end
-
 
   private
 
